@@ -1,0 +1,496 @@
+                .solitaire-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 3rem;
+                    align-items: center;
+                    justify-content: center;
+                    perspective: 1500px;
+                    padding: 4rem 0;
+                    position: relative;
+                }
+
+                .solitaire-deck-area {
+                    flex: 1;
+                    min-width: 320px;
+                    max-width: 450px;
+                    height: 550px;
+                    position: relative;
+                    /* The Stage */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 2;
+                }
+
+                /* 3D Card Style - Realistic Deck Effect */
+                /* 3D Card Style - Realistic Deck Effect */
+                /* 3D Card Style - Realistic Deck Effect */
+                /* 3D Card Style - Realistic Deck Effect */
+                .solitaire-card {
+                    position: absolute;
+                    width: 360px;
+                    height: 540px;
+                    border-radius: 20px;
+                    background: var(--bg-card);
+                    /* Slate base */
+
+                    /* Elegant Frame Border - Matches Theme */
+                    border: 8px solid var(--bg-card-hover);
+                    /* Slate accent */
+
+                    /* The "Many Papers" 3D Edge Effect - Enhanced */
+                    box-shadow:
+                        /* Physical Thickness Layers */
+                        1px 1px 0 var(--bg-card),
+                        2px 2px 0 var(--bg-card-hover),
+                        3px 3px 0 var(--bg-card),
+                        4px 4px 0 var(--bg-card-hover),
+                        5px 5px 0 var(--bg-card),
+                        6px 6px 0 var(--bg-card-hover),
+                        7px 7px 0 var(--bg-card),
+                        /* Drop Shadow for Lift */
+                        12px 12px 35px var(--shadow-color),
+                        inset 0 0 40px rgba(0, 0, 0, 0.4);
+
+                    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease;
+                    transform-origin: center center;
+                    overflow: hidden;
+                    backface-visibility: hidden;
+                    cursor: grab;
+                    transform-style: preserve-3d;
+                }
+
+                .solitaire-card:hover {
+                    border-color: #475569;
+                    /* Lighter on hover */
+                    transform: translateY(-5px);
+                }
+
+                .solitaire-card:active {
+                    cursor: grabbing;
+                }
+
+                .solitaire-card-inner {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 12px;
+                    background: var(--bg-body);
+                    display: block;
+                    /* Removed flex centering */
+                }
+
+                /* Blurred Background Image (Ambient Color) */
+                .solitaire-card-bg {
+                    position: absolute;
+                    top: -10%;
+                    left: -10%;
+                    width: 120%;
+                    height: 120%;
+                    object-fit: cover;
+                    object-position: center;
+                    filter: blur(25px) brightness(0.5);
+                    z-index: 1;
+                }
+
+                /* Main Image - Perfectly Centered & Full Cover */
+                .solitaire-card-img-main {
+                    position: absolute;
+                    /* Absolute to cover parent */
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    /* Forces image to fill area */
+                    object-position: center;
+                    z-index: 2;
+                    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+
+                .solitaire-card:hover .solitaire-card-img-main {
+                    transform: scale(1.1);
+                    /* Simple zoom */
+                }
+
+                /* 3D Description Overlay - Enhanced */
+                .card-hover-info {
+                    position: absolute;
+                    bottom: 20px;
+                    left: 20px;
+                    right: 20px;
+                    padding: 20px;
+                    background: rgba(30, 41, 59, 0.85);
+                    /* Glassy Panel */
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 15px;
+                    color: #fff;
+
+                    /* 3D Transform Start State */
+                    transform: translateY(150%) rotateX(-20deg) translateZ(50px);
+                    transform-origin: bottom center;
+                    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+
+                    text-align: center;
+                    z-index: 10;
+                    opacity: 0;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                }
+
+                /* Creative Icon Overlay on Card (Top Right) */
+                .card-icon-overlay {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    width: 45px;
+                    height: 45px;
+                    background: rgba(15, 23, 42, 0.8);
+                    /* Dark background */
+                    border: 2px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: #38bdf8;
+                    /* Light Blue Icon */
+                    font-size: 1.2rem;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                    z-index: 20;
+                    /* Above everything */
+                    pointer-events: none;
+                }
+
+                .solitaire-card:hover .card-hover-info {
+                    opacity: 1;
+                    transform: translateY(0) rotateX(0deg) translateZ(80px);
+                    /* Pop out in 3D */
+                }
+
+                /* Hand Cursor - 3D Grasp Animation */
+                .hand-cursor {
+                    font-size: 3.5rem;
+                    color: #fff;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    z-index: 50;
+                    opacity: 0;
+                    pointer-events: none;
+                    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                    transform-style: preserve-3d;
+                }
+
+                .hand-cursor.animate {
+                    animation: handGrasp3D 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                }
+
+                @keyframes handGrasp3D {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-20%, 40%) rotateX(-30deg) scale(0.8) translateZ(50px);
+                    }
+
+                    20% {
+                        opacity: 1;
+                        transform: translate(0, 0) rotateX(0deg) scale(1.2) translateZ(100px);
+                        /* Hover above */
+                    }
+
+                    40% {
+                        transform: translate(0, 0) scale(0.9) translateZ(0px);
+                        /* Grab (Touch) */
+                    }
+
+                    60% {
+                        transform: translate(0, 0) scale(0.9) translateZ(0px) rotate(-15deg);
+                        /* Hold */
+                    }
+
+                    100% {
+                        opacity: 0;
+                        transform: translate(100%, -50%) rotate(20deg) scale(1.1) translateZ(100px);
+                        /* Swipe away */
+                    }
+                }
+
+                /* Connecting 3D Arrow - Dynamic */
+                .connecting-arrow-3d {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 4rem;
+                    color: var(--accent);
+                    z-index: 20;
+                    opacity: 0;
+                    pointer-events: none;
+                    text-shadow: 0 0 20px rgba(6, 182, 212, 0.8);
+                }
+
+                .connecting-arrow-3d.animate {
+                    animation: arrowMoveToInfo 1.5s ease-in-out forwards;
+                }
+
+                @keyframes arrowMoveToInfo {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.5) rotateY(90deg);
+                    }
+
+                    20% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) rotateY(0deg);
+                    }
+
+                    50% {
+                        transform: translate(-50%, -50%) translateX(-250px) scale(1) rotateY(0deg);
+                    }
+
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) translateX(-450px) scale(0.5) rotateY(-90deg);
+                    }
+                }
+
+                /* Animations */
+                .solitaire-card.fly-out {
+                    transform: translateX(180%) translateY(-120px) rotate(45deg) scale(0.9) !important;
+                    opacity: 0;
+                    z-index: 100 !important;
+                    filter: blur(5px);
+                }
+
+                .solitaire-card.reset-pos {
+                    transform: translateX(-180%) translateY(50px) rotate(-45deg) scale(0.8) !important;
+                    opacity: 0;
+                    transition: none;
+                }
+
+                /* Info Panel */
+                .solitaire-info {
+                    flex: 1;
+                    min-width: 450px;
+                    max-width: 700px;
+                    text-align: right;
+                    padding: 3.5rem;
+                    background: rgba(30, 41, 59, 0.7);
+                    backdrop-filter: blur(12px);
+                    border-radius: 30px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow:
+                        0 25px 60px rgba(0, 0, 0, 0.3),
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+                    position: relative;
+                    overflow: hidden;
+                    z-index: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    transform-style: preserve-3d;
+                }
+
+                .solitaire-info::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+                    background-size: 200% 100%;
+                    animation: gradientMove 3s linear infinite;
+                }
+
+                @keyframes gradientMove {
+                    0% {
+                        background-position: 100% 0;
+                    }
+
+                    100% {
+                        background-position: -100% 0;
+                    }
+                }
+
+                .info-content-wrapper {
+                    position: relative;
+                    min-height: 220px;
+                    flex-grow: 1;
+                }
+
+                .info-item {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 100%;
+                    opacity: 0;
+                    transform: translateX(50px) rotateY(-10deg);
+                    transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                    pointer-events: none;
+                }
+
+                .info-item.active {
+                    opacity: 1;
+                    transform: translateX(0) rotateY(0);
+                    pointer-events: all;
+                    position: relative;
+                }
+
+                .info-title {
+                    font-family: 'Aref Ruqaa', serif;
+                    font-size: 2.2rem;
+                    background: linear-gradient(to right, #fff, #94a3b8);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    margin-bottom: 1.5rem;
+                }
+
+                .info-desc {
+                    font-size: 1.1rem;
+                    color: var(--text-secondary);
+                    line-height: 1.8;
+                    margin-bottom: 2rem;
+                }
+
+                /* 3D Button - Enhanced */
+                .btn-3d-creative {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 15px;
+                    padding: 15px 40px;
+                    background: linear-gradient(135deg, var(--primary), #06b6d4);
+                    color: white;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    box-shadow:
+                        0 10px 25px rgba(6, 182, 212, 0.4),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                        0 5px 0 #1e3a8a;
+                    /* 3D Depth */
+                    transition: all 0.2s;
+                    position: relative;
+                    top: 0;
+                    overflow: hidden;
+                }
+
+                .btn-3d-creative::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                    transition: 0.5s;
+                    transform: skewX(-20deg);
+                }
+
+                .btn-3d-creative:hover::before {
+                    left: 150%;
+                }
+
+                .btn-3d-creative:hover {
+                    transform: translateY(-2px);
+                    box-shadow:
+                        0 15px 30px rgba(6, 182, 212, 0.5),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                        0 5px 0 #1e3a8a;
+                }
+
+                .btn-3d-creative:active {
+                    transform: translateY(5px);
+                    box-shadow:
+                        0 2px 10px rgba(6, 182, 212, 0.4),
+                        inset 0 2px 0 rgba(255, 255, 255, 0.1),
+                        0 0 0 #1e3a8a;
+                    top: 5px;
+                }
+
+                /* Hand Animation - Improved */
+                .hand-cursor {
+                    position: absolute;
+                    font-size: 4rem;
+                    color: #fff;
+                    text-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+                    z-index: 50;
+                    pointer-events: none;
+                    opacity: 0;
+                    filter: drop-shadow(0 0 15px var(--accent));
+                }
+
+                .hand-cursor.animate {
+                    animation: handSwipeImproved 1.2s ease-in-out forwards;
+                }
+
+                @keyframes handSwipeImproved {
+                    0% {
+                        transform: translate(100%, 100%) rotate(45deg) scale(0.5);
+                        opacity: 0;
+                    }
+
+                    20% {
+                        transform: translate(20%, 20%) rotate(10deg) scale(1.1);
+                        opacity: 1;
+                    }
+
+                    40% {
+                        transform: translate(0, 0) rotate(0deg) scale(1);
+                        /* Touch */
+                    }
+
+                    60% {
+                        transform: translate(-50%, -10%) rotate(-20deg) scale(1);
+                        /* Swipe */
+                    }
+
+                    100% {
+                        transform: translate(-150%, -50%) rotate(-45deg) scale(0.8);
+                        opacity: 0;
+                    }
+                }
+
+                /* Navigation Container (Added to Info Panel) */
+                .info-nav-container {
+                    margin-top: 2rem;
+                    display: flex;
+                    justify-content: flex-end;
+                    /* Align right */
+                    gap: 15px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.1);
+                    padding-top: 1.5rem;
+                }
+
+                .nav-btn-3d {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 12px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid var(--primary);
+                    color: var(--primary);
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s;
+                    box-shadow: 0 5px 0 rgba(6, 182, 212, 0.2);
+                    position: relative;
+                    top: 0;
+                }
+
+                .nav-btn-3d:hover {
+                    background: var(--primary);
+                    color: #fff;
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 0 rgba(6, 182, 212, 0.4);
+                }
+
+                .nav-btn-3d:active {
+                    transform: translateY(2px);
+                    box-shadow: 0 2px 0 rgba(6, 182, 212, 0.2);
+                    top: 2px;
+                }

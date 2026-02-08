@@ -1,0 +1,1020 @@
+ /* === CINEMA 3D THEATER === */
+                .cinema-section {
+                    background: var(--bg-body);
+                    overflow: hidden;
+                    position: relative;
+                    padding: 3rem 0 2.5rem 0;
+                    perspective: 1800px;
+                    min-height: 650px;
+                }
+
+                /* 3D Theater Room Container */
+                .cinema-theater {
+                    position: relative;
+                    width: 100%;
+                    max-width: 1000px;
+                    margin: 0 auto;
+                    perspective: 2200px;
+                    transform-style: preserve-3d;
+                    padding: 0 20px;
+                }
+
+                /* 3D Curtains */
+                .cinema-curtain {
+                    position: absolute;
+                    top: 0;
+                    height: 100%;
+                    width: 90px;
+                    background: linear-gradient(90deg,
+                            #450a0a 0%, #7f1d1d 20%, #991b1b 40%,
+                            #7f1d1d 60%, #450a0a 80%, #2d0707 100%);
+                    z-index: 50;
+                    transform-style: preserve-3d;
+                    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.6);
+                }
+
+                .cinema-curtain::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: repeating-linear-gradient(180deg,
+                            transparent 0px, transparent 25px,
+                            rgba(0, 0, 0, 0.15) 25px, rgba(0, 0, 0, 0.15) 50px);
+                }
+
+                .curtain-left {
+                    left: 0;
+                    border-radius: 0 0 60px 0;
+                    transform: perspective(500px) rotateY(14deg);
+                    transform-origin: left center;
+                }
+
+                .curtain-right {
+                    right: 0;
+                    border-radius: 0 0 0 60px;
+                    transform: perspective(500px) rotateY(-14deg);
+                    transform-origin: right center;
+                }
+
+                /* Curtain Hover Effects */
+                .cinema-section:hover .curtain-left {
+                    transform: perspective(500px) rotateY(25deg) translateX(-20px);
+                }
+
+                .cinema-section:hover .curtain-right {
+                    transform: perspective(500px) rotateY(-25deg) translateX(20px);
+                }
+
+                /* Curtain Open Animation on Film Change */
+                .cinema-curtain.opening {
+                    animation: curtainOpen 1.5s ease-out;
+                }
+
+                @keyframes curtainOpen {
+                    0% {
+                        transform: perspective(500px) rotateY(15deg);
+                    }
+
+                    50% {
+                        transform: perspective(500px) rotateY(45deg) translateX(-50px);
+                    }
+
+                    100% {
+                        transform: perspective(500px) rotateY(15deg);
+                    }
+                }
+
+                .curtain-right.opening {
+                    animation: curtainOpenRight 1.5s ease-out;
+                }
+
+                @keyframes curtainOpenRight {
+                    0% {
+                        transform: perspective(500px) rotateY(-15deg);
+                    }
+
+                    50% {
+                        transform: perspective(500px) rotateY(-45deg) translateX(50px);
+                    }
+
+                    100% {
+                        transform: perspective(500px) rotateY(-15deg);
+                    }
+                }
+
+                /* Curtain Top Drape */
+                .curtain-top {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 60px;
+                    background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 50%, transparent 100%);
+                    z-index: 55;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .curtain-top::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 30px;
+                    background: repeating-linear-gradient(90deg,
+                            transparent 0px, transparent 40px,
+                            #450a0a 40px, #450a0a 45px);
+                    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+                }
+
+                /* Screen Frame - Enhanced 3D with Professional Effects */
+                .cinema-screen-wrapper {
+                    position: relative;
+                    width: 85%;
+                    margin: 0 auto;
+                    padding-top: 45%;
+                    /* Aspect ratio */
+                    background: var(--bg-darker);
+                    border: 11px solid var(--bg-card);
+                    border-bottom: 20px solid var(--bg-card-hover);
+                    border-radius: 10px;
+                    transform: rotateX(6deg) translateZ(60px);
+                    transform-origin: bottom center;
+                    box-shadow:
+                        0 0 150px rgba(6, 182, 212, 0.2),
+                        0 0 80px rgba(59, 130, 246, 0.15),
+                        0 40px 80px rgba(0, 0, 0, 0.9),
+                        inset 0 0 60px rgba(0, 0, 0, 0.95);
+                    overflow: hidden;
+                    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+                    animation: screenGlow 4s ease-in-out infinite alternate;
+                }
+
+                @keyframes screenGlow {
+                    0% {
+                        box-shadow:
+                            0 0 120px rgba(6, 182, 212, 0.15),
+                            0 0 60px rgba(59, 130, 246, 0.1),
+                            0 40px 80px rgba(0, 0, 0, 0.9),
+                            inset 0 0 60px rgba(0, 0, 0, 0.95);
+                    }
+
+                    100% {
+                        box-shadow:
+                            0 0 180px rgba(6, 182, 212, 0.25),
+                            0 0 100px rgba(59, 130, 246, 0.2),
+                            0 40px 80px rgba(0, 0, 0, 0.9),
+                            inset 0 0 60px rgba(0, 0, 0, 0.95);
+                    }
+                }
+
+                .cinema-section:hover .cinema-screen-wrapper {
+                    transform: rotateX(4deg) translateZ(90px) scale(1.02);
+                    box-shadow:
+                        0 0 200px rgba(6, 182, 212, 0.3),
+                        0 0 120px rgba(59, 130, 246, 0.2),
+                        0 50px 100px rgba(0, 0, 0, 0.95),
+                        inset 0 0 70px rgba(0, 0, 0, 0.95);
+                }
+
+                /* Screen Reflection Effect */
+                .cinema-screen-wrapper::before {
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    left: 10%;
+                    width: 80%;
+                    height: 8px;
+                    background: linear-gradient(90deg,
+                            transparent 0%,
+                            rgba(255, 255, 255, 0.3) 30%,
+                            rgba(255, 255, 255, 0.5) 50%,
+                            rgba(255, 255, 255, 0.3) 70%,
+                            transparent 100%);
+                    border-radius: 50%;
+                    filter: blur(3px);
+                    z-index: 100;
+                    animation: screenShine 3s ease-in-out infinite;
+                }
+
+                @keyframes screenShine {
+
+                    0%,
+                    100% {
+                        opacity: 0.6;
+                        transform: translateX(-20%);
+                    }
+
+                    50% {
+                        opacity: 1;
+                        transform: translateX(20%);
+                    }
+                }
+
+                .cinema-screen {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: var(--bg-darker);
+                    overflow: hidden;
+                    transform-style: preserve-3d;
+                }
+
+                /* Film Slide - 3D Zoom from Back */
+                .film-slide {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 0;
+                    transform: translateZ(-1000px) scale(0.3);
+                    transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+                    filter: brightness(0.2) blur(15px);
+                }
+
+                .film-slide.active {
+                    opacity: 1;
+                    transform: translateZ(0) scale(1);
+                    filter: brightness(1) blur(0);
+                    z-index: 5;
+                }
+
+                .film-slide.exit {
+                    opacity: 0;
+                    transform: translateZ(300px) scale(1.3);
+                    filter: blur(10px);
+                    z-index: 6;
+                }
+
+                .film-poster {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    filter: sepia(0.1) contrast(1.1);
+                }
+
+                /* Film Info Overlay */
+                .film-info {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    padding: 30px;
+                    background: linear-gradient(to top, var(--bg-darker) 0%, rgba(2, 6, 23, 0.6) 60%, transparent 100%);
+                    transform: translateY(100%);
+                    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s;
+                    text-align: center;
+                }
+
+                .film-slide.active .film-info {
+                    transform: translateY(0);
+                }
+
+                .film-icon-3d {
+                    font-size: 2.5rem;
+                    color: var(--accent);
+                    margin-bottom: 10px;
+                    display: inline-block;
+                    animation: iconPulse 2s ease-in-out infinite;
+                    filter: drop-shadow(0 0 20px var(--accent));
+                }
+
+                @keyframes iconPulse {
+
+                    0%,
+                    100% {
+                        transform: scale(1) rotateY(0deg);
+                    }
+
+                    50% {
+                        transform: scale(1.1) rotateY(180deg);
+                    }
+                }
+
+                .film-title {
+                    font-family: 'Aref Ruqaa', serif;
+                    font-size: 2rem;
+                    color: #fbbf24;
+                    text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
+                    margin: 10px 0;
+                }
+
+                .film-desc {
+                    color: #cbd5e1;
+                    font-size: 1rem;
+                    margin-bottom: 15px;
+                }
+
+                .btn-film {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 12px 30px;
+                    background: linear-gradient(135deg, var(--primary), var(--secondary));
+                    color: #fff;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+                    transition: all 0.3s;
+                }
+
+                .btn-film:hover {
+                    transform: translateY(-3px) scale(1.05);
+                    box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
+                }
+
+                /* 3D Cinema Seats - Professional Immersive Theater */
+                .cinema-seats-container {
+                    position: relative;
+                    width: 100%;
+                    margin: 15px auto 25px;
+                    padding: 25px 0;
+                    perspective: 1800px;
+                    transform-style: preserve-3d;
+                    /* Arc Layout */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 12px;
+                }
+
+                .seats-row {
+                    display: flex;
+                    justify-content: center;
+                    gap: 7px;
+                    transform-style: preserve-3d;
+                    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                    position: relative;
+                }
+
+                /* Back Row - Smaller & Further */
+                .seats-row-1 {
+                    transform: translateZ(-220px) translateY(-22px) rotateX(11deg) scale(0.62);
+                    opacity: 0.35;
+                    filter: blur(1.8px);
+                }
+
+                /* Middle Row */
+                .seats-row-2 {
+                    transform: translateZ(-110px) translateY(-11px) rotateX(5deg) scale(0.8);
+                    opacity: 0.6;
+                    margin-top: 4px;
+                }
+
+                /* Front Row - VIP */
+                .seats-row-3 {
+                    transform: translateZ(25px) rotateX(-2deg) scale(1.02);
+                    margin-top: 8px;
+                    z-index: 10;
+                }
+
+                /* Hover effect on entire container - Seats come alive */
+                .cinema-seats-container:hover .seats-row-1 {
+                    transform: translateZ(-200px) translateY(-18px) rotateX(14deg) scale(0.65);
+                    opacity: 0.42;
+                    filter: blur(1.2px);
+                }
+
+                .cinema-seats-container:hover .seats-row-2 {
+                    transform: translateZ(-85px) translateY(-7px) rotateX(7deg) scale(0.82);
+                    opacity: 0.68;
+                }
+
+                .cinema-seats-container:hover .seats-row-3 {
+                    transform: translateZ(45px) rotateX(-4deg) scale(1.05);
+                }
+
+                /* Individual Seats - Enhanced 3D */
+                .seat {
+                    width: 32px;
+                    height: 28px;
+                    background: linear-gradient(180deg, #dc2626 0%, #b91c1c 25%, #991b1b 50%, #7f1d1d 75%, #450a0a 100%);
+                    border-radius: 10px 10px 4px 4px;
+                    position: relative;
+                    box-shadow:
+                        0 10px 20px rgba(0, 0, 0, 0.5),
+                        0 4px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 4px 10px rgba(255, 255, 255, 0.2),
+                        inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+                    border: 2px solid #450a0a;
+                    cursor: pointer;
+                    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    transform-style: preserve-3d;
+                    animation: seatIdle 3s ease-in-out infinite;
+                    animation-delay: calc(var(--seat-index, 0) * 0.1s);
+                }
+
+                @keyframes seatIdle {
+
+                    0%,
+                    100% {
+                        transform: translateY(0);
+                    }
+
+                    50% {
+                        transform: translateY(-2px);
+                    }
+                }
+
+                /* 3D Seat Hover - Epic Pop Effect */
+                .seat:hover {
+                    transform: translateY(-18px) translateZ(30px) rotateX(-25deg) rotateY(8deg);
+                    background: linear-gradient(180deg, #ef4444 0%, #dc2626 25%, #b91c1c 50%, #991b1b 75%, #7f1d1d 100%);
+                    box-shadow:
+                        0 30px 50px rgba(0, 0, 0, 0.7),
+                        0 0 40px rgba(220, 38, 38, 0.4),
+                        0 0 60px rgba(220, 38, 38, 0.2),
+                        inset 0 4px 10px rgba(255, 255, 255, 0.3);
+                    animation: none;
+                    z-index: 100;
+                }
+
+                /* Armrests on sides */
+                .seat::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -15px;
+                    left: 50%;
+                    transform: translateX(-50%) rotateX(25deg);
+                    width: 20px;
+                    height: 15px;
+                    background: linear-gradient(180deg, #64748b, #475569, #334155, #1e293b);
+                    border-radius: 0 0 6px 6px;
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
+                }
+
+                /* Head Silhouette - More Realistic */
+                .seat::after {
+                    content: '';
+                    position: absolute;
+                    top: -25px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 20px;
+                    height: 25px;
+                    background: radial-gradient(ellipse at 50% 65%, var(--bg-darker) 52%, transparent 53%);
+                    border-radius: 50% 50% 45% 45%;
+                    opacity: 0.8;
+                    transition: all 0.4s ease;
+                }
+
+                /* Head moves up and fades when seat hovers */
+                .seat:hover::after {
+                    transform: translateX(-50%) translateY(-10px) rotateX(-15deg);
+                    opacity: 0.3;
+                    filter: blur(1px);
+                }
+
+                /* Projector Light Beam from Reels */
+                .projector-beam {
+                    position: absolute;
+                    top: 60px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 200px;
+                    height: 350px;
+                    background: linear-gradient(to bottom, rgba(255, 220, 150, 0.08), transparent 80%);
+                    clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+                    pointer-events: none;
+                    filter: blur(8px);
+                    animation: beamFlicker 3s infinite alternate;
+                    z-index: 1;
+                }
+
+                @keyframes beamFlicker {
+                    0% {
+                        opacity: 0.4;
+                    }
+
+                    50% {
+                        opacity: 0.7;
+                    }
+
+                    100% {
+                        opacity: 0.5;
+                    }
+                }
+
+                /* Vintage Film Reels - Below Screen */
+                .film-reel {
+                    position: absolute;
+                    bottom: 20px;
+                    width: 70px;
+                    height: 70px;
+                    border: 4px solid #334155;
+                    border-radius: 50%;
+                    background:
+                        radial-gradient(circle at center, transparent 20%, var(--bg-card) 21%, var(--bg-card) 30%, transparent 31%),
+                        conic-gradient(from 0deg, var(--bg-card) 0deg 30deg, transparent 30deg 60deg, var(--bg-card) 60deg 90deg, transparent 90deg 120deg, var(--bg-card) 120deg 150deg, transparent 150deg 180deg, var(--bg-card) 180deg 210deg, transparent 210deg 240deg, var(--bg-card) 240deg 270deg, transparent 270deg 300deg, var(--bg-card) 300deg 330deg, transparent 330deg 360deg);
+                    background-color: var(--bg-body);
+                    z-index: 30;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+                    transition: all 0.3s ease;
+                }
+
+                .film-reel::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 15px;
+                    height: 15px;
+                    background: #475569;
+                    border-radius: 50%;
+                    box-shadow: 0 0 5px #000;
+                }
+
+                .reel-left {
+                    left: 50px;
+                    animation: spinReel 4s linear infinite reverse;
+                }
+
+                .reel-right {
+                    right: 50px;
+                    animation: spinReel 4s linear infinite;
+                }
+
+                /* Fast spin when film changes */
+                .film-reel.spinning {
+                    animation-duration: 0.3s !important;
+                }
+
+                @keyframes spinReel {
+                    from {
+                        transform: rotate(0deg);
+                    }
+
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+
+                /* Film Strip - Below Screen, Between Reels */
+                .film-strip-container {
+                    position: absolute;
+                    bottom: 40px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: calc(100% - 180px);
+                    height: 30px;
+                    z-index: 25;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .film-strip {
+                    width: 100%;
+                    height: 22px;
+                    background: repeating-linear-gradient(90deg,
+                            #1e293b 0px, #1e293b 20px,
+                            #0f172a 20px, #0f172a 24px);
+                    border-top: 4px solid #334155;
+                    border-bottom: 4px solid #334155;
+                    position: relative;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                }
+
+                .film-strip::before,
+                .film-strip::after {
+                    content: '';
+                    position: absolute;
+                    top: 3px;
+                    left: 0;
+                    width: 100%;
+                    height: 5px;
+                    background: repeating-linear-gradient(90deg,
+                            transparent 0px, transparent 12px,
+                            #0f172a 12px, #0f172a 16px);
+                }
+
+                .film-strip::after {
+                    top: auto;
+                    bottom: 3px;
+                }
+
+                /* Film strip animation on hover */
+                .cinema-section:hover .film-strip {
+                    animation: filmMove 0.8s linear infinite;
+                }
+
+                /* Film strip fast animation when changing */
+                .film-strip.moving {
+                    animation: filmMove 0.2s linear infinite !important;
+                }
+
+                @keyframes filmMove {
+                    0% {
+                        background-position: 0 0;
+                    }
+
+                    100% {
+                        background-position: 24px 0;
+                    }
+                }
+
+                /* Interactive Seats - Hover Effects */
+                .seat {
+                    width: 32px;
+                    height: 28px;
+                    background: linear-gradient(180deg, #991b1b 0%, #7f1d1d 40%, #450a0a 100%);
+                    border-radius: 10px 10px 4px 4px;
+                    position: relative;
+                    box-shadow:
+                        0 8px 15px rgba(0, 0, 0, 0.6),
+                        inset 0 3px 5px rgba(255, 255, 255, 0.1),
+                        inset 0 -3px 5px rgba(0, 0, 0, 0.3);
+                    border: 1px solid #450a0a;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                }
+
+                .seat:hover {
+                    transform: translateY(-8px) rotateX(-15deg);
+                    background: linear-gradient(180deg, #b91c1c 0%, #991b1b 40%, #7f1d1d 100%);
+                    box-shadow:
+                        0 15px 25px rgba(0, 0, 0, 0.7),
+                        0 0 20px rgba(185, 28, 28, 0.3);
+                }
+
+                .seat:hover::after {
+                    opacity: 0;
+                }
+
+                /* Cinematic Section Header - Matching Other Section Titles */
+                .cinema-header {
+                    text-align: center;
+                    margin-bottom: 3rem;
+                    position: relative;
+                    z-index: 10;
+                }
+
+                .cinema-section-title {
+                    font-size: 2rem;
+                    color: var(--text-primary);
+                    margin-bottom: 1rem;
+                    display: inline-block;
+                    position: relative;
+                    padding: 0.5rem 1.5rem;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    border-radius: 8px;
+                    background: transparent;
+                    text-decoration: none;
+                }
+
+                .cinema-section-title::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(59, 130, 246, 0.1));
+                    border-radius: 8px;
+                    opacity: 0;
+                    transition: opacity 0.4s ease;
+                    z-index: -1;
+                }
+
+                .cinema-section-title::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -8px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 0;
+                    height: 3px;
+                    background: linear-gradient(90deg, var(--primary), var(--accent));
+                    transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+                    border-radius: 2px;
+                }
+
+                .cinema-section-title:hover {
+                    color: var(--primary);
+                    transform: scale(1.05) translateY(-3px);
+                    text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+                }
+
+                .cinema-section-title:hover::before {
+                    opacity: 1;
+                }
+
+                .cinema-section-title:hover::after {
+                    width: 100%;
+                }
+
+                .cinema-section-title:hover i {
+                    transform: scale(1.3) rotate(15deg);
+                    filter: drop-shadow(0 0 10px var(--accent));
+                }
+
+                .cinema-section-title i {
+                    color: var(--accent);
+                    margin-left: 10px;
+                    transition: all 0.4s ease;
+                }
+
+                .cinema-header .title-line {
+                    width: 80px;
+                    height: 4px;
+                    background: var(--primary);
+                    margin: 0 auto;
+                    border-radius: 2px;
+                }
+
+                .cinema-header p {
+                    color: var(--text-secondary);
+                    margin-top: 10px;
+                    font-size: 1rem;
+                }
+
+                /* Navigation Dots - Enhanced */
+                .cinema-dots {
+                    display: flex;
+                    justify-content: center;
+                    gap: 12px;
+                    margin-top: 30px;
+                    padding: 15px 25px;
+                    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
+                    border-radius: 50px;
+                    width: fit-content;
+                    margin-left: auto;
+                    margin-right: auto;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+                    border: 1px solid rgba(100, 116, 139, 0.2);
+                }
+
+                .cinema-dot {
+                    width: 14px;
+                    height: 14px;
+                    border-radius: 50%;
+                    background: linear-gradient(135deg, #334155, #475569);
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    border: 2px solid transparent;
+                    position: relative;
+                }
+
+                .cinema-dot:hover {
+                    transform: scale(1.2);
+                    background: linear-gradient(135deg, #475569, #64748b);
+                }
+
+                .cinema-dot.active {
+                    background: linear-gradient(135deg, var(--primary), var(--accent));
+                    border-color: rgba(255, 255, 255, 0.5);
+                    transform: scale(1.3);
+                    box-shadow:
+                        0 0 20px var(--accent),
+                        0 0 40px rgba(6, 182, 212, 0.3);
+                }
+
+                .cinema-dot.active::after {
+                    content: '';
+                    position: absolute;
+                    inset: -6px;
+                    border-radius: 50%;
+                    border: 2px solid var(--accent);
+                    animation: dotPulse 1.5s ease-in-out infinite;
+                    opacity: 0.5;
+                }
+
+                @keyframes dotPulse {
+
+                    0%,
+                    100% {
+                        transform: scale(1);
+                        opacity: 0.5;
+                    }
+
+                    50% {
+                        transform: scale(1.3);
+                        opacity: 0;
+                    }
+                }
+
+                /* Decorative Side Lights */
+                .cinema-theater::before,
+                .cinema-theater::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    width: 8px;
+                    height: 120px;
+                    background: linear-gradient(180deg,
+                            transparent 0%,
+                            rgba(6, 182, 212, 0.3) 20%,
+                            rgba(6, 182, 212, 0.6) 50%,
+                            rgba(6, 182, 212, 0.3) 80%,
+                            transparent 100%);
+                    border-radius: 4px;
+                    transform: translateY(-50%);
+                    filter: blur(2px);
+                    animation: sideGlow 2s ease-in-out infinite alternate;
+                    z-index: 60;
+                }
+
+                .cinema-theater::before {
+                    left: 20px;
+                }
+
+                .cinema-theater::after {
+                    right: 20px;
+                }
+
+                @keyframes sideGlow {
+                    0% {
+                        opacity: 0.5;
+                        height: 100px;
+                        box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        height: 140px;
+                        box-shadow: 0 0 40px rgba(6, 182, 212, 0.5);
+                    }
+                }
+
+                /* ===== 3D MOVIE TITLES MARQUEE ===== */
+                .cinema-marquee-container {
+                    position: absolute;
+                    bottom: 20%;
+                    left: 0;
+                    right: 0;
+                    height: 80px;
+                    perspective: 1500px;
+                    overflow: hidden;
+                    z-index: 70;
+                    pointer-events: none;
+                }
+
+                .cinema-marquee-track {
+                    display: flex;
+                    gap: 60px;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0 30px;
+                    animation: marqueeScroll 25s linear infinite;
+                    transform-style: preserve-3d;
+                    transform: translateZ(100px) rotateX(-5deg);
+                    pointer-events: auto;
+                }
+
+                @keyframes marqueeScroll {
+                    0% {
+                        transform: translateX(100%) translateZ(100px) rotateX(-5deg);
+                    }
+
+                    100% {
+                        transform: translateX(-100%) translateZ(100px) rotateX(-5deg);
+                    }
+                }
+
+                .cinema-marquee-track:hover {
+                    animation-play-state: paused;
+                }
+
+                .marquee-film-title {
+                    flex-shrink: 0;
+                    padding: 12px 30px;
+                    background: linear-gradient(135deg,
+                            rgba(251, 191, 36, 0.95) 0%,
+                            rgba(245, 158, 11, 0.9) 50%,
+                            rgba(217, 119, 6, 0.95) 100%);
+                    border-radius: 8px;
+                    font-family: 'Aref Ruqaa', serif;
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: #1e293b;
+                    text-decoration: none;
+                    white-space: nowrap;
+                    transform-style: preserve-3d;
+                    transform: rotateY(0deg) translateZ(20px);
+                    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    box-shadow:
+                        0 8px 25px rgba(0, 0, 0, 0.4),
+                        0 0 30px rgba(251, 191, 36, 0.3),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .marquee-film-title::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: linear-gradient(45deg,
+                            transparent 30%,
+                            rgba(255, 255, 255, 0.4) 50%,
+                            transparent 70%);
+                    transform: translateX(-100%);
+                    transition: transform 0.6s ease;
+                }
+
+                .marquee-film-title:hover::before {
+                    transform: translateX(100%);
+                }
+
+                .marquee-film-title:hover {
+                    transform: rotateY(-15deg) rotateX(10deg) translateZ(60px) scale(1.15);
+                    background: linear-gradient(135deg,
+                            rgba(6, 182, 212, 0.95) 0%,
+                            rgba(59, 130, 246, 0.9) 100%);
+                    color: #fff;
+                    box-shadow:
+                        0 20px 50px rgba(0, 0, 0, 0.5),
+                        0 0 60px rgba(6, 182, 212, 0.5),
+                        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+                    z-index: 100;
+                }
+
+                .marquee-film-title i {
+                    margin-left: 10px;
+                    font-size: 1rem;
+                    opacity: 0.8;
+                    transition: all 0.3s ease;
+                }
+
+                .marquee-film-title:hover i {
+                    opacity: 1;
+                    transform: scale(1.2) rotate(10deg);
+                }
+
+                /* Marquee Glow Effect */
+                .cinema-marquee-container::before,
+                .cinema-marquee-container::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    width: 80px;
+                    height: 100%;
+                    z-index: 10;
+                    pointer-events: none;
+                }
+
+                .cinema-marquee-container::before {
+                    left: 0;
+                    background: linear-gradient(90deg,
+                            rgba(2, 6, 23, 0.9) 0%,
+                            transparent 100%);
+                }
+
+                .cinema-marquee-container::after {
+                    right: 0;
+                    background: linear-gradient(270deg,
+                            rgba(2, 6, 23, 0.9) 0%,
+                            transparent 100%);
+                }
+
+                /* Floor Reflection */
+                .cinema-seats-container::before {
+                    content: '';
+                    position: absolute;
+                    bottom: -20px;
+                    left: 10%;
+                    right: 10%;
+                    height: 40px;
+                    background: linear-gradient(180deg,
+                            rgba(6, 182, 212, 0.1) 0%,
+                            transparent 100%);
+                    filter: blur(10px);
+                    border-radius: 50%;
+                    pointer-events: none;
+                }
+
+                /* Responsive Cinema */
+                @media (max-width: 768px) {
+                    .cinema-screen-wrapper {
+                        width: 95%;
+                        padding-top: 55%;
+                    }
+
+                    .cinema-section-title {
+                        font-size: 1.5rem;
+                    }
+
+                    .seat {
+                        width: 24px;
+                        height: 22px;
+                    }
+
+                    .seats-row {
+                        gap: 4px;
+                    }
+
+                    .cinema-curtain {
+                        width: 60px;
+                    }
+                }

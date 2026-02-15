@@ -1,0 +1,173 @@
+  /* CIRCULAR MODAL STYLES */
+        .radial-modal {
+            background: rgba(5, 10, 15, 0.9) !important;
+            backdrop-filter: blur(10px);
+            display: none;
+            /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radial-modal.show {
+            display: flex !important;
+        }
+
+        .radial-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 215, 0, 0.2);
+            animation: rotateEntry 1s ease-out;
+        }
+
+        @keyframes rotateEntry {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .radial-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #ffd700, #b8860b);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            z-index: 10;
+        }
+
+        .radial-center i {
+            font-size: 30px;
+            color: #0a1628;
+            margin-bottom: 5px;
+        }
+
+        .radial-center span {
+            font-family: 'Aref Ruqaa';
+            font-weight: bold;
+            color: #0a1628;
+        }
+
+        .radial-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            /* Calculate position based on index vars */
+            --angle: calc(360deg / 10 * var(--i));
+            --radius: 200px;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius)) rotate(calc(var(--angle) * -1));
+        }
+
+        .rad-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(10, 22, 40, 0.8);
+            border: 1px solid rgba(105, 240, 174, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .rad-icon i {
+            font-size: 24px;
+            color: #69f0ae;
+        }
+
+        .radial-item span {
+            display: block;
+            color: #fff;
+            font-family: 'Amiri';
+            font-size: 14px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .radial-item:hover .rad-icon {
+            background: #69f0ae;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(105, 240, 174, 0.6);
+        }
+
+        .radial-item:hover .rad-icon i {
+            color: #0a1628;
+        }
+
+        .radial-item:hover span {
+            color: #69f0ae;
+        }
+
+        .close-radial {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Mobile Adjustment */
+        @media (max-width: 600px) {
+            .radial-container {
+                width: 320px;
+                height: 320px;
+            }
+
+            .radial-item {
+                --radius: 130px;
+            }
+
+            .rad-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .rad-icon i {
+                font-size: 18px;
+            }
+        }
+
+        /* MAIN CAROUSEL CARD CSS (Inject here to ensure visibility) */
+        .topic-card-3d:hover {
+            transform: scale(1.05);
+        }
+
+        /* NEW HOME SECTION WRAPPER */
+        #home-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #webgl-container,
+        #css-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }

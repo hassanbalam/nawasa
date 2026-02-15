@@ -1,0 +1,473 @@
+/* ===== ENHANCED 3D NAVBAR WITH CREATIVE EFFECTS ===== */
+        @keyframes navbarShimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes navGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.1), inset 0 0 0 rgba(255, 215, 0, 0);
+            }
+
+            50% {
+                box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), 0 0 35px rgba(255, 215, 0, 0.15), inset 0 0 40px rgba(255, 215, 0, 0.02);
+            }
+        }
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+
+            25% {
+                transform: translateY(-3px) rotateY(5deg);
+            }
+
+            75% {
+                transform: translateY(2px) rotateY(-5deg);
+            }
+        }
+
+        @keyframes logoTextGlow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            }
+
+            50% {
+                text-shadow: 0 0 25px rgba(255, 215, 0, 0.7), 0 0 50px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        @keyframes btnShine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 200%;
+            }
+        }
+
+        #top-navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) perspective(1200px) rotateX(8deg);
+            width: 95%;
+            max-width: 1400px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.8), rgba(15, 30, 55, 0.75), rgba(10, 22, 40, 0.8));
+            backdrop-filter: blur(20px) saturate(1.5);
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            animation: navGlow 4s ease-in-out infinite;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+
+        #top-navbar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.08), transparent);
+            background-size: 200% 100%;
+            animation: navbarShimmer 6s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #top-navbar::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 10%;
+            right: 10%;
+            height: 8px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            border-radius: 0 0 50px 50px;
+            filter: blur(4px);
+            pointer-events: none;
+            transition: all 0.5s;
+        }
+
+        #top-navbar:hover {
+            transform: translateX(-50%) perspective(1200px) rotateX(0deg) translateY(-3px) translateZ(15px);
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.92), rgba(15, 30, 55, 0.88), rgba(10, 22, 40, 0.92));
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                0 0 40px rgba(255, 215, 0, 0.25),
+                0 0 80px rgba(255, 215, 0, 0.08);
+        }
+
+        #top-navbar:hover::after {
+            bottom: -12px;
+            left: 5%;
+            right: 5%;
+            height: 12px;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25), transparent);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 26px;
+            color: #ffd700;
+            animation: logoTextGlow 3s ease-in-out infinite;
+            perspective: 600px;
+        }
+
+        .logo i {
+            animation: logoFloat 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #ffd700, #ffec8b, #ffd700, #daa520);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: mihrabShimmer 4s ease infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn-3d {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 22px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Amiri', serif;
+            font-size: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .nav-btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.15), transparent);
+            transition: none;
+            pointer-events: none;
+        }
+
+        .nav-btn-3d:hover::before {
+            animation: btnShine 0.6s ease forwards;
+        }
+
+        .nav-btn-3d i {
+            font-size: 17px;
+            color: #ffd700;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.3));
+        }
+
+        .nav-btn-3d:hover {
+            background: rgba(255, 215, 0, 0.12);
+            border-color: rgba(255, 215, 0, 0.6);
+            color: #ffd700;
+            transform: translateY(-6px) translateZ(25px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 215, 0, 0.15);
+        }
+
+        .nav-btn-3d:hover i {
+            transform: rotateY(360deg) scale(1.3);
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+        }
+
+        .nav-btn-3d.special {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.12), rgba(255, 215, 0, 0.04));
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .nav-btn-3d.special:hover {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.12));
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 215, 0, 0.2);
+        }
+
+        /* ORBITAL TOOLS MENU CONTAINER */
+        .orbital-menu {
+            position: fixed;
+            bottom: 60px;
+            left: 60px;
+            width: 80px;
+            height: 80px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1200px;
+        }
+
+        /* CENTER BUTTON */
+        .orbital-center {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ffd700, #b8860b);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #0a1628;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .orbital-center i {
+            transition: transform 0.5s;
+        }
+
+        /* Hover Effect on Main Button */
+        .orbital-menu:hover .orbital-center {
+            transform: scale(0.9);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+        }
+
+        .orbital-menu:hover .orbital-center i {
+            transform: rotateY(180deg);
+        }
+
+        /* SATELLITE RING CONTAINER */
+        .orbital-ring {
+            position: absolute;
+            width: 260px;
+            /* Diameter of orbit */
+            height: 260px;
+            border-radius: 50%;
+            pointer-events: none;
+            /* Initially allow click through */
+            opacity: 0;
+            transform: scale(0) rotateX(60deg) rotateZ(0deg);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        /* SHOW RING ON HOVER */
+        .orbital-menu:hover .orbital-ring {
+            opacity: 1;
+            transform: scale(1) rotateX(20deg);
+            /* 3D Tilt */
+            pointer-events: auto;
+            animation: ringSpin 20s linear infinite;
+            /* Slow rotation of entire ring */
+        }
+
+        /* TOOLS ITEMS */
+        .orbital-item {
+            position: absolute;
+            /* Calculate position using trig in CSS calc() or JS. Since we use var(--i), we can iterate */
+            --angle: calc(360deg / 10 * var(--i));
+            --radius: 130px;
+
+            /* Basic Item Style */
+            width: 45px;
+            height: 45px;
+            background: rgba(10, 22, 40, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffd700;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s;
+
+            /* POSITIONING */
+            transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(var(--angle) * -1));
+        }
+
+        /* Counter-rotate items so icons stay upright during ring spin 
+           Note: If the ring spins, we need the items to counter-rotate the ring's spin too...
+           Simpler 3D effect: The ring spins, items are fixed to it. 
+           To keep icons upright relative to screen, we need an animation on items too.
+        */
+
+        .orbital-menu:hover .orbital-item i {
+            animation: iconCounterSpin 20s linear infinite;
+        }
+
+        .orbital-item:hover {
+            background: #ffd700;
+            color: #0a1628;
+            transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(var(--angle) * -1)) scale(1.3) !important;
+            box-shadow: 0 0 20px #ffd700;
+            z-index: 100;
+        }
+
+        /* KEYFRAMES */
+        @keyframes ringSpin {
+            0% {
+                transform: scale(1) rotateX(20deg) rotateZ(0deg);
+            }
+
+            100% {
+                transform: scale(1) rotateX(20deg) rotateZ(360deg);
+            }
+        }
+
+        @keyframes iconCounterSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+
+        /* Tooltip style */
+        .orbital-item::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .orbital-item:hover::after {
+            opacity: 1;
+            bottom: -35px;
+        }
+
+        /* Carousel Controls - Full Screen Overlay */
+        #carousel-controls {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            /* Space for buttons */
+        }
+
+        /* Buttons positioned at edges */
+        .kaaba-btn {
+            position: relative;
+            /* Relative to flex container */
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(10, 22, 40, 0.7);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            color: #ffd700;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(8px);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+            z-index: 910;
+        }
+
+        /* Specific Button Styling */
+        #btn-prev {
+            order: 1;
+            /* Left side */
+        }
+
+        #btn-next {
+            order: 2;
+            /* Right side */
+        }
+
+        /* RSS Button - Absolute positioning at bottom */
+        #btn-rss {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            z-index: 910;
+        }
+
+        .kaaba-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            transform: scale(1.15);
+        }
+
+        #btn-rss:hover {
+            transform: translateX(-50%) scale(1.15);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            #carousel-controls {
+                padding: 0 10px;
+            }
+
+            .kaaba-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            #btn-rss {
+                bottom: 120px;
+            }
+        }

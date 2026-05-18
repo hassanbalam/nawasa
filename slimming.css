@@ -1,0 +1,558 @@
+ :root {
+            --primary: #ec4899;
+            --primary-glow: rgba(236, 72, 153, 0.4);
+            --bg-dark: #020617;
+        }
+
+        .theme-gold {
+            --primary: #fbbf24;
+            --primary-glow: rgba(251, 191, 36, 0.4);
+        }
+
+        .theme-cyan {
+            --primary: #22d3ee;
+            --primary-glow: rgba(34, 211, 238, 0.4);
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+        }
+
+        /* --- تصميم اللوجو المتداخل --- */
+        .creative-logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            perspective: 1000px;
+        }
+
+        .female-logo-svg {
+            width: 36px;
+            height: 44px;
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 6px var(--primary-glow));
+            animation: body-glow 2.5s infinite ease-in-out;
+        }
+
+        .butterfly-logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            background: linear-gradient(45deg, #fff, var(--primary), #fff, var(--primary));
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+            display: inline-block;
+            line-height: 1;
+        }
+
+        @keyframes body-glow {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-2deg);
+                filter: drop-shadow(0 0 4px var(--primary));
+            }
+
+            50% {
+                transform: scale(1.05) rotate(2deg);
+                filter: drop-shadow(0 0 12px var(--primary));
+            }
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 300% center;
+            }
+        }
+
+        /* --- الهيدر والتنقل ثلاثي الأبعاد المطور بالكامل --- */
+        .navbar-container {
+            perspective: 1500px;
+        }
+
+        .navbar-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, box-shadow 0.3s ease;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(236, 72, 153, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(2, 6, 23, 0.95));
+            border-radius: 24px;
+        }
+
+        .nav-btn-3d {
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 5px 0 rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            perspective: 800px;
+        }
+
+        .nav-btn-3d i {
+            font-size: 1.25rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-btn-3d span {
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffffff;
+            /* 3D Extruded Text Shadow (تأثير ثلاثي الأبعاد لأسماء الأقسام) */
+            text-shadow: 
+                0 1px 0 #1e293b,
+                0 2px 0 #0f172a,
+                0 3px 4px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-3d:hover {
+            background: rgba(236, 72, 153, 0.16);
+            border-color: rgba(236, 72, 153, 0.5);
+            transform: translateY(-8px) translateZ(30px) rotateX(-12deg) rotateY(8deg);
+            box-shadow: 
+                0 10px 0 var(--primary),
+                0 20px 30px var(--primary-glow);
+        }
+
+        .nav-btn-3d:hover span {
+            color: #ffffff;
+            text-shadow: 
+                0 1px 0 var(--primary),
+                0 2px 0 #9d174d,
+                0 3px 0 #9d174d,
+                0 5px 10px var(--primary-glow);
+        }
+
+        .nav-btn-3d:hover i {
+            transform: scale(1.25) translateZ(15px) rotate(15deg);
+            color: var(--primary);
+        }
+
+        .nav-btn-3d:active {
+            transform: translateY(2px) translateZ(10px);
+            box-shadow: 
+                0 2px 0 var(--primary),
+                0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+                /* --- أزرار التحكم ثلاثية الأبعاد المبتكرة أسفل زر التحول --- */
+        .control-btn-3d {
+            width: 55px;
+            height: 55px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--primary);
+            box-shadow: 
+                0 6px 0 rgba(0, 0, 0, 0.5),
+                0 10px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .control-btn-3d:hover {
+            transform: translateY(-4px) translateZ(10px);
+            box-shadow: 
+                0 10px 0 var(--primary),
+                0 15px 25px var(--primary-glow);
+            color: white;
+        }
+        .control-btn-3d:active {
+            transform: translateY(4px) translateZ(2px);
+            box-shadow: 
+                0 2px 0 var(--primary),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+                /* --- أزرار التحكم ثلاثية الأبعاد المصغرة أسفل الهاتف --- */
+        .control-btn-3d-mini {
+            transform-style: preserve-3d;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .control-btn-3d-mini:hover {
+            transform: translateY(-2px) translateZ(8px);
+            box-shadow: 0 6px 0 var(--primary), 0 10px 15px var(--primary-glow) !important;
+            color: white !important;
+        }
+        .control-btn-3d-mini:active {
+            transform: translateY(2px) translateZ(1px);
+            box-shadow: 0 1px 0 var(--primary), 0 3px 6px rgba(0,0,0,0.4) !important;
+        }
+
+        /* --- نقاط تحريك الصور الزجاجية ثلاثية الأبعاد المصلحة والمتوهجة --- */
+        .dot-3d {
+            width: 12px !important;
+            height: 12px !important;
+            border-radius: 50% !important;
+            background: rgba(255, 255, 255, 0.3) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            opacity: 0.8 !important;
+        }
+        .dot-3d:hover {
+            background: rgba(236, 72, 153, 0.65) !important;
+            border-color: rgba(236, 72, 153, 0.8) !important;
+            opacity: 1 !important;
+            transform: scale(1.25);
+        }
+        .swiper-pagination-bullet-active.dot-3d {
+            background: linear-gradient(135deg, #ffffff, var(--primary)) !important;
+            width: 32px !important;
+            border-radius: 6px !important;
+            opacity: 1 !important;
+            border-color: #ffffff !important;
+            box-shadow: 0 0 12px var(--primary), 0 0 24px var(--primary-glow) !important;
+        }
+
+        /* --- تأثيرات الأزرار المجسمة --- */
+        .btn-main-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 8px 0 #b8256f, 0 15px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-main-3d:hover {
+            transform: translateY(-2px) translateZ(10px);
+            box-shadow: 0 10px 0 #b8256f, 0 20px 25px var(--primary-glow);
+        }
+
+        .btn-main-3d:active {
+            transform: translateY(6px) translateZ(2px);
+            box-shadow: 0 2px 0 #b8256f, 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- مسرح الـ SVG المطور ثلاثي الأبعاد لقسم الترحيب --- */
+        .hero-interactive-stage {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            perspective: 2000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .composite-3d-scene {
+            position: relative;
+            width: 500px;
+            height: 670px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* شاشة الآيفون المدمجة بدقة - تم تكبير المقاسات بانسجام */
+        .embedded-phone-screen {
+            position: absolute;
+            top: 105px;
+            left: 210px;
+            width: 260px;
+            height: 500px;
+            border-radius: 46px;
+            border: 6px solid #1e293b;
+            box-shadow: 
+                0 0 0 2px #475569,
+                inset 0 0 0 6px #000,
+                0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            background: #000;
+            z-index: 10;
+            transform: translateZ(10px);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* طبقة الـ SVG المتفاعلة فوق وتحت الهاتف */
+        .svg-overlay-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            pointer-events: none;
+            transform: translateZ(30px);
+        }
+
+        /* الحركات الانسيابية التفاعلية لأجزاء الـ SVG */
+        .dynamic-silhouette {
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: bottom center;
+        }
+
+        .dynamic-finger-left {
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: 130px 335px;
+        }
+
+        .dynamic-finger-right {
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: 370px 365px;
+        }
+
+        /* أيقونات الشراء المتساقطة المتوهجة */
+        .falling-shop-icon {
+            pointer-events: none;
+            filter: drop-shadow(0 0 8px currentColor);
+            z-index: 40;
+        }
+
+        /* كارت الوصف ثلاثي الأبعاد المضيء */
+        .glass-badge-3d {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(236, 72, 153, 0.25));
+            box-shadow: 0 8px 24px 0 rgba(236, 72, 153, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+            transform: translateZ(35px);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+                /* لوجو الموبايل الصغير جداً أعلاه */
+        .phone-top-logo {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 335px;
+            transform: translateX(-50%) translateZ(25px);
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.15rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px var(--primary-glow);
+            z-index: 30;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* --- خريطة الجسم النقاط الساخنة --- */
+        .body-frame {
+            position: relative;
+            padding: 15px;
+            border-radius: 40px;
+            border: 2px solid rgba(236, 72, 153, 0.3);
+            box-shadow: 0 0 40px var(--primary-glow);
+            transition: 0.5s;
+        }
+
+        .hotspot {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .hotspot::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 1px solid white;
+            border-radius: 50%;
+            animation: ping 1.5s infinite;
+        }
+
+        .hotspot-info {
+            position: absolute;
+            width: 160px;
+            padding: 10px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 110;
+            pointer-events: none;
+            font-size: 0.75rem;
+        }
+
+        .hotspot:hover+.hotspot-info {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-10px);
+        }
+
+        .arrow-box {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(to left, var(--primary), transparent);
+            z-index: 40;
+        }
+
+        /* --- عناصر واجهة المستخدم العامة --- */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+        }
+
+        .prize-fly {
+            position: fixed;
+            z-index: 9999;
+            pointer-events: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        /* --- تأثير متوهج فاخر لعناوين الأقسام وتأثير الحركة عند المرور بالماوس --- */
+        .section-title-glow {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title-glow i {
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .section-title-glow:hover {
+            transform: scale(1.04) translateY(-3px);
+            text-shadow: 0 0 25px rgba(236, 72, 153, 0.9);
+        }
+
+        .section-title-glow:hover i {
+            transform: rotate(360deg) scale(1.25);
+        }
+
+        /* خط سفلي مضيء ينزلق عند المرور على العنوان */
+        .section-title-glow::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 90px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), #22d3ee);
+            border-radius: 2px;
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .section-title-glow:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        /* ==========================================
+           تنسيقات الكاروسيل الذكي ثلاثية الأبعاد الفاخرة واستقرار القسم
+           ========================================== */
+        
+        /* جعل القسم مستقر تماماً ولا يتأثر حجمه أثناء دوران الكاروسيل */
+        #products {
+            overflow: hidden !important;
+            position: relative;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .productSwiper {
+            position: relative;
+            padding-left: 15px;
+            padding-right: 15px;
+            overflow: visible !important; /* للسماح للبطاقات ثلاثية الأبعاد الجانبية بالظهور خارج حدود العرض، مع حمايتها بـ products overflow-hidden */
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .productSwiper {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+
+        /* تصميم أزرار تحريك الكاروسيل المدمجة في لوحة التحكم */
+        .product-swiper-next,
+        .product-swiper-prev {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border: 2px solid rgba(236, 72, 153, 0.35);
+            color: var(--primary) !important;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.5), 0 6px 12px rgba(236, 72, 153, 0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-style: preserve-3d;
+            transform: translateZ(10px);
+        }
+
+        /* تأثيرات التحويم والتفاعل ثلاثي الأبعاد المذهلة للأزرار */
+        .product-swiper-next:hover,
+        .product-swiper-prev:hover {
+            background: linear-gradient(135deg, var(--primary), #f43f5e);
+            color: #ffffff !important;
+            border-color: #ffffff;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.5), 0 4px 14px rgba(236, 72, 153, 0.5);
+            transform: translateZ(25px) scale(1.08);
+        }
+
+        .product-swiper-next:active,
+        .product-swiper-prev:active {
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 2px 5px rgba(236, 72, 153, 0.3);
+            transform: translateZ(5px) scale(0.95);
+        }
+
+        /* نقاط التحريك (Pagination) الزجاجية الفاخرة */
+        .product-swiper-pagination .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.2) !important;
+            width: 10px;
+            height: 10px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-swiper-pagination .swiper-pagination-bullet-active {
+            background: var(--primary) !important;
+            width: 24px;
+            border-radius: 5px;
+            opacity: 1;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
